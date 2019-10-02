@@ -1,14 +1,16 @@
 [color=#e6172c]Projet en cours[/color]
+<span style="color: #26B260">Projet en cours</span>
 
 # Aux futurs employeurs voici mon projet en cours
 
-C'est un Blog avec d'articles avec de fausses données en symfony 4
+C'est un Blog d'articles avec de fausses données en symfony 4
 
 1. Pour le cloner tapez dans votre terminal la commande suivante : 
 
-    **if ($cleSSH) {echo "tapez cette commande"}**
+   **if ($cleSSH) {echo "tapez cette commande"}**
 ``` git clone git@github.com:Celine-Nova/SymfoBlog.git ```
-    **else {Tapez celle-ci}**
+   
+   **else {Tapez celle-ci}**
 ``` https://github.com/Celine-Nova/SymfoBlog.git ```
     
 
@@ -26,7 +28,8 @@ C'est un Blog avec d'articles avec de fausses données en symfony 4
 
 6. Appuyez sur la touche **Ctrl** puis cliquez sur l'adresse du serveur ![capture terminal](images/Capture_terminal.PNG)
 
-<span class="text-info">Naviguez sur  SimBLog </span>
+<span class="text-info">Naviguez sur  SimBLog</span>
+<span class="bg-info text-success">Naviguez</span>
 
 
 NB: ce projet est en cours d'amelioration
