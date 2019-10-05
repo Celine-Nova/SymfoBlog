@@ -1,8 +1,8 @@
-Projet en cours
+###Projet en cours
 
 # Aux futurs employeurs voici mon projet en cours
 
-C'est un Blog d'articles avec de fausses données en symfony 4
+Blog d'articles avec de fausses données en symfony 4
 
 1. Pour le cloner tapez dans votre terminal la commande suivante : 
 
@@ -22,7 +22,7 @@ C'est un Blog d'articles avec de fausses données en symfony 4
 4. Importez la :
 ```  php bin/console doctrine:migrations:migrate ```
 
-5. Chargez les fixture :
+5. Chargez les fixtures :
 ```  php bin/console doctrine:fixtures:load ```
 
 6. Demarrez le serveur :
@@ -35,7 +35,9 @@ C'est un Blog d'articles avec de fausses données en symfony 4
 
 
 NB: ce projet est en cours d'amelioration
-- Finir le formulaire
-- Pouvoir telecharger les images
-- créer une session utilisateur
-- pouvoir ajouter des commentaires
+
+- ~~Formulaire creation article~~
+- ~~Pouvoir telecharger les images~~
+- Formulaire modification article
+- Créer une session utilisateur, formulaire inscritption, sécurité
+- Pouvoir ajouter des commentaires, les afficher par ordre

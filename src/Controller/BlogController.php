@@ -14,12 +14,12 @@ use Doctrine\ORM\Mapping\OrderBy;
 
 class BlogController extends AbstractController
 {
-    // je récupère tous les article que j'envoie dans la vue "index"
     /**
      * @Route("/blog", name="blog")
      */
     public function index(ArticleRepository $articles)
     {
+        // je récupère tous les article que j'envoie dans la vue "index"
         $articles = $articles->findAll();
         return $this->render('blog/index.html.twig', [
             'articles' => $articles,
@@ -36,11 +36,11 @@ class BlogController extends AbstractController
         ]);
     }
     
-    // je créee un nouvel article via un fourmulaire et je récupère les données
     /**
-    * @Route("/blog/new", name="blog_create")
-    *
-    */
+     * @Route("/blog/new", name="blog_create")
+     *
+     */
+    // je créee un nouvel article via un fourmulaire et je récupère les données
    public function create(Article $article = null, Request $request, EntityManagerInterface $entityManager)
    {
       $form = $this->createForm(ArticleType::class, $article);
@@ -49,7 +49,7 @@ class BlogController extends AbstractController
 
     if ($form->isSubmitted() && $form->isValid()) {
 
-        //$file = $form->get('image')->getData();
+        //$file = $form->get('image')->getData(); si erreur STRING
         $file = $article->getImage();
         $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
 
@@ -63,9 +63,7 @@ class BlogController extends AbstractController
         }
 
         $article->setImage($fileName);
-
-     
-
+    
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($article);
         $entityManager->flush();
