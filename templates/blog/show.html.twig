@@ -5,8 +5,11 @@
         <div class="metadata">Ecrit le {{article.createdAt | date('d/m/Y')}} à {{article.createdAt | date('H:i')}} dans la catégorie {{article.category.title}}</div>
 
         <div class="content">
-                <img src="{{article.image}}" alt="">
+                <img src="{{ asset('uploads/images/' ~ article.image) }}" alt="chemin relatif">
+        
+                {# {{ dump(article.image) }} #}
                 <p>{{article.content}}</p>
+        </div>      
 </article>  
 <section id="commentaires">
         {% for comment in article.comments %}
@@ -24,5 +27,6 @@
                                         
                 </div>
         {% endfor %}
-</section>      
+</section>
+
 {% endblock body %}

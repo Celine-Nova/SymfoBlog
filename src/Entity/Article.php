@@ -93,12 +93,12 @@ class Article
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImage()
     {
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage($image) //ATTENTION A NE PAS LAISSER LE TYPE STRING => sinon pb de recuperation de l'objet image au niveau handlerequest sinon ($form->get('image')->getData())
     {
         $this->image = $image;
 

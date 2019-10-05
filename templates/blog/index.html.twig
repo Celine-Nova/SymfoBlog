@@ -10,9 +10,11 @@
         <h2>{{article.title}}</h2>
         <div class="metadata">Ecrit le {{article.createdAt | date('d/m/Y')}} à {{article.createdAt | date('H:i')}} dans la catégorie {{article.category.title}}</div>
         <div class="content">
-            <img src="{{article.image}}" alt="">
+            <img src="{{ asset('uploads/images/' ~ article.image) }}" alt="Description article">
+    
+            {# {{ dump(article.image) }} #}
             <p>{{article.content}}</p>
-            
+    
             <a href="{{path('blog_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
         </div>
     </article>

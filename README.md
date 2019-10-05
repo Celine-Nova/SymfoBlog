@@ -1,5 +1,4 @@
-[color=#e6172c]Projet en cours[/color]
-<span style="color: #26B260">Projet en cours</span>
+Projet en cours
 
 # Aux futurs employeurs voici mon projet en cours
 
@@ -23,13 +22,16 @@ C'est un Blog d'articles avec de fausses données en symfony 4
 4. Importez la :
 ```  php bin/console doctrine:migrations:migrate ```
 
-5. Demarrez le serveur :
+5. Chargez les fixture :
+```  php bin/console doctrine:fixtures:load ```
+
+6. Demarrez le serveur :
 ``` php bin/console server:run ```
 
-6. Appuyez sur la touche **Ctrl** puis cliquez sur l'adresse du serveur ![capture terminal](images/Capture_terminal.PNG)
+7. Appuyez sur la touche **Ctrl** puis cliquez sur l'adresse du serveur ![capture terminal](images/Capture_terminal.PNG)
 
 <span class="text-info">Naviguez sur  SimBLog</span>
-<span class="bg-info text-success">Naviguez</span>
+
 
 
 NB: ce projet est en cours d'amelioration
