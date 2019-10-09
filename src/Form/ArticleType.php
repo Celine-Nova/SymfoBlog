@@ -46,6 +46,7 @@ class ArticleType extends AbstractType
             ])
 
             ->add('image', FileType::class,[
+               // 'data_class' => null,
                 'label' => 'Image (jpg, png, gif)',
                 'attr'=> [
                     'placeholder' => "Photo de l'article"

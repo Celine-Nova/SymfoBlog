@@ -27,7 +27,7 @@ class ArticleFixtures extends Fixture
 
         ]);
 
-        $populator->addEntity('App\Entity\Article', 10, [
+        $populator->addEntity('App\Entity\Article', 3, [
             'title' => function() use ($generator) { 
                 return $generator->unique()->sentence($nbWords = 6, $variableNbWords = true); 
             },
@@ -35,7 +35,7 @@ class ArticleFixtures extends Fixture
                 return $generator->unique()->paragraph($nbSentences = 53, $variableNbSentences = true); 
             },
             'image' => function() use ($generator) { 
-                return $generator->unique()->imageUrl($width = 350, $height = 150); 
+                return $generator->unique()->imageUrl($width = 640, $height = 480);
             }
 
         ]);

@@ -8,9 +8,9 @@ use Faker\Provider\DateTime;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\ORM\Mapping\OrderBy;
 
 class BlogController extends AbstractController
 {
@@ -41,36 +41,48 @@ class BlogController extends AbstractController
      *
      */
     // je créee un nouvel article via un fourmulaire et je récupère les données
-   public function create(Article $article = null, Request $request, EntityManagerInterface $entityManager)
+   public function create(Request $request, EntityManagerInterface $entityManager)
    {
-      $form = $this->createForm(ArticleType::class, $article);
+        $article = new Article();
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
 
-      $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-    if ($form->isSubmitted() && $form->isValid()) {
+            //avant l'enregistrement d'un article je dois recuperer l'objet fichier qui n'est pas une chaine de caractere (image)
+            //$file = $form->get('image')->getData(); //si erreur STRING
+            $file = $article->getImage();
 
-        //$file = $form->get('image')->getData(); si erreur STRING
-        $file = $article->getImage();
-        $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            if(!is_null($article->getImage())){
+            //je genere un nom de fichier unique pour eviter d'ecraser un fichier du meme nom & je concatene avec la vrai extension du fichier d'origine
+            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            }
 
-        try {
-            $file->move(
-                $this->getParameter('images_directory'),
-                $fileName
+            try {
+                //je deplace mon fichier dans le dossier souhaité
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $fileName
+                );
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+            }
+
+            $article->setImage($fileName);
+        
+          
+            $entityManager->persist($article);
+            $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'Enregistrement effectué'
             );
-        } catch (FileException $e) {
-            // ... handle exception if something happens during file upload
-        }
 
-        $article->setImage($fileName);
-    
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($article);
-        $entityManager->flush();
-        return $this->redirectToRoute('blog_show', [
-            'id' => $article->getId()            
-            ]);
-        }
+            return $this->redirectToRoute('blog_show', [
+                'id' => $article->getId()            
+                ]);
+            }
         
 
        return $this->render('blog/create.html.twig', [
@@ -86,7 +98,74 @@ class BlogController extends AbstractController
         return md5(uniqid());
     }
 
-     /**
+     
+    /**
+     * @Route("/blog/{id}/edit", name="blog_edit", methods={"GET","POST"}, requirements={"id"="\d+"})
+     *
+     */
+    public function edit(Article $article, Request $request)
+    {
+        $oldImage = $article->getImage();
+
+        //Pour modifier un element déjà conserver je dois concaténer le chemin de téléchargement configuré avec le nom de fichier stocké et créer une nouvelle Fileclasse:
+        if(!empty($oldImage)){
+            $article->setImage(
+                new File($this->getParameter('images_directory').'/'.$oldImage)
+             );
+        }
+
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if(!is_null($article->getImage())){
+
+            $file = $form->get('image')->getData();
+            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            try {
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $fileName
+                );
+            } catch (FileException $e) {
+
+            }
+            
+            $article->setImage($fileName);
+
+            if(!empty($oldPoster)){
+                // unlink() me permet de supprimer mon fichier
+                unlink(
+                    $this->getParameter('images_directory') .'/'.$oldImage
+                );
+            }
+
+        } else {
+            
+            $article->setImage($oldImage);//ancien nom de fichier
+        }
+
+         $this->getDoctrine()->getManager()->flush();
+
+         $this->addFlash(
+            'info',
+            'Mise à jour effectuée'
+         );
+        
+             return $this->redirectToRoute('blog_show', [
+            'id' => $article->getId()            
+            ]);
+        }
+       
+        return $this->render('blog/create.html.twig', [
+            'form' => $form->createView()
+           ]);
+    }
+    
+    
+    
+    /**
      * @Route("/blog/{id}", name="blog_show")
      */
     public function show(Article $article)

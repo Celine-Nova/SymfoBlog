@@ -1,4 +1,4 @@
-###Projet en cours
+## Projet en cours
 
 # Aux futurs employeurs voici mon projet en cours
 
