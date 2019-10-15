@@ -34,9 +34,7 @@ class ArticleFixtures extends Fixture
             'content' => function() use ($generator) { 
                 return $generator->unique()->paragraph($nbSentences = 53, $variableNbSentences = true); 
             },
-            'image' => function() use ($generator) { 
-                return $generator->unique()->imageUrl($width = 640, $height = 480);
-            }
+           'image' => '',
 
         ]);
 
