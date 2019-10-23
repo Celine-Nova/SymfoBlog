@@ -38,6 +38,6 @@ NB: ce projet est en cours d'amelioration
 
 - ~~Formulaire creation article~~
 - ~~Pouvoir telecharger les images~~
-- Formulaire modification article
+- ~~Formulaire modification article~~
 - Créer une session utilisateur, formulaire inscritption, sécurité
 - Pouvoir ajouter des commentaires, les afficher par ordre

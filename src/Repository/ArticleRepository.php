@@ -19,6 +19,16 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+     //Récuperer la liste des articles par date en ordre decroissant afin de voir les articles les plus récente (Query Builder)
+     public function findAllByDate()
+     {
+         $query = $this->createQueryBuilder('a')
+                       ->orderBy('a.createdAt', 'DESC');
+ 
+         return $query->getQuery()->getResult();
+ 
+     }
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */

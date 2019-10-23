@@ -20,7 +20,7 @@ class BlogController extends AbstractController
     public function index(ArticleRepository $articles)
     {
         // je récupère tous les article que j'envoie dans la vue "index"
-        $articles = $articles->findAll();
+        $articles = $articles->findAllByDate();
         return $this->render('blog/index.html.twig', [
             'articles' => $articles,
         ]);
