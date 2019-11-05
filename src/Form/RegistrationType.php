@@ -3,10 +3,13 @@
 namespace App\Form;
 
 use App\Entity\User;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
@@ -15,19 +18,27 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
-            ->add('username')
-            ->add('password', RepeatedType::class, [
-                'constraints' => [
-                    new NotBlank()
+            ->add('email', EmailType::class, [
+                'label' => 'Adresse Email',
+                'attr'=> [
+                'placeholder' => "Email",
                 ],
+            ])
+
+            ->add('username', TextType::class, [
+                'label' => 'Nom d\'utilisateur',
+                'attr'=> [
+                'placeholder' => "Nom d'utilisateur",
+                ],
+            ])
+
+            ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'empty_data' => '',// ATTENTION : necessaire pour setter une valeur par defaut en cas de chaine sinon NULL ce qui generera une erreur
-                'invalid_message' => 'The password fields must match.',
-                'options' => ['attr' => ['class' => 'password-field']],
-                'required' => true,
-                'first_options'  => ['label' => 'Password','empty_data' => ''],
-                'second_options' => ['label' => 'Repeat Password','empty_data' => '',],
+                'constraints' => new NotBlank(),
+                'first_options'  => array('label' => 'Mot de passe', 'attr' => ['placeholder' => "Mot de passe"]),
+                'second_options' => array('label' => 'Répéter le mot de passe', 'attr'=> [
+                    'placeholder' => "Répétez votre mot de passe"]),
+                'invalid_message' => 'Vous n\'avez pas le même mot de passe.',
             ]);
         ;
     }
