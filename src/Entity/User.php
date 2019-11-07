@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -71,4 +72,25 @@ class User
 
         return $this;
     }
+    public function getSalt()
+    {
+        
+    }
+
+    public function eraseCredentials()
+    {
+
+    }
+    /*
+     Attention : cette fonction est dediée au module de securité de chez symfo
+     Ce module prevoit de base que l'on puisse retourner plusieurs roles si souhaité.
+     Cette fonction est obligatoire meme si mon utilisateur n'a qu'un et un seul role.
+
+     Cette fonction n'est pas dediée à l'interface entre doctrine / mysql directement mais bien la debugtoolbar par exemple
+     */
+    public function getRoles() //attention cela est appelé aussi une seule fois a la creation de la session. Si je veux changer la valeur je dois d'abord me deconnecter
+    {
+        return ['ROLE_USER'];
+    }
+
 }
