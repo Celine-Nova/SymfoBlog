@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Validator\Constraints\Email;
 
 class RegistrationType extends AbstractType
 {
@@ -23,6 +24,12 @@ class RegistrationType extends AbstractType
                 'attr'=> [
                 'placeholder' => "Email",
                 ],
+                'constraints' => [
+                    new Email(),
+                    
+                ],
+                    
+                
             ])
 
             ->add('username', TextType::class, [
