@@ -1,5 +1,18 @@
 ## Projet en cours
 
+# Présentation du projet
+Un Blog d'articles qui contient :
+ - une page d'accueil,
+ - une page d'articles, avec la liste des articles décris par une photo
+ - une page article, avec un article détaillé,
+ - une page d'ajout d'un article ** A ajouter accès qu'aux utilisateurs connectés**
+ - une page de d'inscription
+ - une page de connexion, avec fonctionnailité d'authentification et de déconnexion
+
+### Prochaine étape
+**créer un formulaire d'ajout de commentaire pour les utilisateurs connectés**
+
+
 # Aux futurs employeurs voici mon projet en cours
 
 Blog d'articles avec de fausses données en symfony 4
@@ -39,5 +52,5 @@ NB: ce projet est en cours d'amelioration
 - ~~Formulaire creation article~~
 - ~~Pouvoir telecharger les images~~
 - ~~Formulaire modification article~~
-- Créer une session utilisateur, formulaire inscritption, sécurité
-- Pouvoir ajouter des commentaires, les afficher par ordre
+- ~~Créer une session utilisateur, formulaire inscritption, sécurité~~
+- Pouvoir ajouter des commentaires pour les utilisateus connectés, les afficher par ordre

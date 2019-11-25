@@ -6,12 +6,36 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: ~ }
+        # je créee mon provider (in_database)
+        in_database: 
+            entity:
+                class: App\Entity\User
+                property: email  # j'indique sur mon provider quel champs va etre utilisé pour tester le nom d'utilisateur(ici email)
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: true
+        # je lie mon provider (in_database) ci-dessus
+            provider: in_database
+
+            form_login:
+            #chemin du login
+                login_path: security_login
+            #chemin de verification des donnes de login (authentification)
+                check_path: security_login
+            
+            logout:
+                path: security_logout
+                # je redirige l'utilisateur apres la deconnexion
+                target: blog
+
+            #autre methode avec form:authentification et guard
+            #     form_login: true
+            # guard:
+            #     authenticators:
+            #         - App\Security\LoginFormAuthenticator
 
             # activate different ways to authenticate
 
@@ -20,7 +44,7 @@ security:
 
             # form_login: true
             # https://symfony.com/doc/current/security/form_login_setup.html
-
+            
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
