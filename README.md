@@ -5,7 +5,7 @@ Un Blog d'articles qui contient :
  - une page d'accueil,
  - une page d'articles, avec la liste des articles décris par une photo
  - une page article, avec un article détaillé,
- - une page d'ajout d'un article ** A ajouter accès qu'aux utilisateurs connectés**
+ - une page d'ajout d'un article **accès qu'aux utilisateurs connectés**
  - une page de d'inscription
  - une page de connexion, avec fonctionnailité d'authentification et de déconnexion
 

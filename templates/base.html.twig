@@ -23,29 +23,28 @@
                         <li class="nav-item ">
                         <a class="nav-link" href="{{path ('blog')}}">Articles<span class="sr-only">(current)</span></a>
                         </li>
-
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <li class="nav-item">
                         <a class="nav-link" href="{{path ('blog_create')}}">Créer un article </a>
                         </li>
-                       
-                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        {# ou if {% app.user %} #}
-                            <li class="nav-item">
-                                <a href= "{{ path ("security_logout") }}" class="nav-link"> Déconnexion </a>
-                            </li>
-                        {% else %}
-                            <li class="nav-item">
-                                <a href= "{{ path ("security_login") }}" class="nav-link"> Connexion </a>
-                            </li>
                         {% endif %}
-                        
                     </ul>
                 </div>
                 <div>
-                    <ul>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{path ('security_registration')}}"> Inscription </a>
-                        </li>
+                    <ul class="navbar-nav mr-auto">
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            {# ou if {% app.user %} #}
+                                <li class="nav-item">
+                                    <a href= "{{ path ("security_logout") }}" class="nav-link"> Déconnexion </a>
+                                </li>
+                                {% else %}
+                                <li class="nav-item">
+                                    <a href= "{{ path ("security_login") }}" class="nav-link"> Connexion </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{path ('security_registration')}}"> Inscription </a>
+                                </li>
+                            {% endif %}
                     </ul>
                 </div>
         </nav>
