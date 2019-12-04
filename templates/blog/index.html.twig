@@ -13,7 +13,8 @@
             <img src="{{ asset('uploads/images/' ~ (article.image ?: 'default-image.jpg')) }}" alt="Description article">
     
             {# {{ dump(article.image) }} #}
-            <p>{{article.content}}</p>
+            {# filtre slice pour couper l'article ainsi ajouter "lire la suite" pour l'article complet #}
+            <p>{{article.content|slice(0,400)}} </p>
     
             <a href="{{path('blog_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
         </div>

@@ -13,6 +13,8 @@
         </div>      
 </article>  
 <section id="commentaires">
+        {# nombre de commentaires #}
+        <h1> {{article.comments | length }} Commentaires :</h1>
         {% for comment in article.comments %}
                 <div class="comment">
                         <div class="row">
@@ -29,6 +31,24 @@
                         
                 </div>
         {% endfor %}
+
+        {% if app.user %}
+        {# ou  {% if is_granted('IS_AUTHENTICATED_FULLY') %} #}
+        {{ form_start(commentForm) }}
+        {{ form_widget(commentForm) }}
+
+    
+        <button type="submit" class="btn btn-success">Commenter !</button>
+    
+        {{ form_end(commentForm) }}
+
+        {% else %}
+        <h2> Connectez-vous pour laisser un commentaire !</h2>
+        <a href="{{path('security_login')}}" class="btn btn-primary">Connexion</a>
+
+        {% endif %}
+
+
 </section>
 
 {% endblock body %}
