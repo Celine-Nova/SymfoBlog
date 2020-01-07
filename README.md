@@ -1,4 +1,4 @@
-## Projet en cours
+# SYMFOBLOG
 
 # Présentation du projet
 Un Blog d'articles qui contient :
@@ -9,11 +9,9 @@ Un Blog d'articles qui contient :
  - une page de d'inscription
  - une page de connexion, avec fonctionnailité d'authentification et de déconnexion
 
-### Prochaine étape
-**créer un formulaire d'ajout de commentaire pour les utilisateurs connectés**
 
 
-# Aux futurs employeurs voici mon projet en cours
+# Etape à suivre pour visualiser le projet
 
 Blog d'articles avec de fausses données en symfony 4
 
@@ -47,10 +45,3 @@ Blog d'articles avec de fausses données en symfony 4
 
 
 
-NB: ce projet est en cours d'amelioration
-
-- ~~Formulaire creation article~~
-- ~~Pouvoir telecharger les images~~
-- ~~Formulaire modification article~~
-- ~~Créer une session utilisateur, formulaire inscritption, sécurité~~
-- Pouvoir ajouter des commentaires pour les utilisateus connectés, les afficher par ordre
